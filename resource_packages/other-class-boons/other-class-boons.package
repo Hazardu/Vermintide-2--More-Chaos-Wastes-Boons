@@ -1,0 +1,11 @@
+mod = [
+	"other-class-boons"
+]
+
+package = [
+	"resource_packages/other-class-boons/other-class-boons"
+]
+
+lua = [
+	"scripts/mods/other-class-boons/*"
+]
