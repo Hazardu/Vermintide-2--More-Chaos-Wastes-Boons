@@ -108,8 +108,7 @@ local add_talent_as_global_powerup = function (powerup)
 		display_name = name_var,
 		description_values = description_values_var,
 		buff_template = {
-			buffs = {
-			}
+			buffs = {}
 		}
 	}
 
@@ -117,7 +116,9 @@ local add_talent_as_global_powerup = function (powerup)
 		DeusPowerUpTemplates[powerup.powerup_id].buff_template.buffs[id] = {
 			max_stacks = 1
 		}
-		DeusPowerUpTemplates[powerup.powerup_id].buff_template.buffs[id].name = powerup.powerup_id
+		if DeusPowerUpTemplates[powerup.powerup_id].buff_template.buffs[id].name == nil then
+			DeusPowerUpTemplates[powerup.powerup_id].buff_template.buffs[id].name = powerup.powerup_id
+		end
 		for k, field in pairs(buff) do
 			DeusPowerUpTemplates[powerup.powerup_id].buff_template.buffs[id][k] = field
 		end
@@ -322,6 +323,8 @@ local insert_talent_methods = function()
 			rarity = "plentiful",
 			career_name = "wh_bountyhunter",
 			excluded_careers = { "dr_slayer", "wh_priest", "es_questingknight", "bw_scholar", "bw_necromancer", "bw_adept", "bw_unchained", "we_thornsister" },
+			forced_description = "When firing your last shot, gain 15%% power and attack speed.",
+			forced_name = "Original Steel Crescendo",
 		},
 		{
 			powerup_id = "victor_bountyhunter_debuff_defence_on_crit",
@@ -745,8 +748,7 @@ local insert_talent_methods = function()
 		-- 	excluded_careers = { "wh_captain", "wh_zealot", "wh_bountyhunter", "wh_priest", "we_shade", "we_maidenguard", "we_waywatcher", "dr_ranger", "dr_slayer", "wh_priest", "es_questingknight", "es_huntsman", "es_knight", "es_mercenary", "dr_engineer", "dr_ironbreaker" },
 		-- },
 		{
-			powerup_id = "bardin_ironbreaker_refresh_gromril_armour",
-			additional_buffs = {"bardin_ironbreaker_gromril_armour", "bardin_ironbreaker_gromril_antistun"},
+			powerup_id = "bardin_ironbreaker_gromril_armour",
 			classname = "dwarf_ranger",
 			rarity = "exotic",
 			career_name = "dr_ironbreaker",
